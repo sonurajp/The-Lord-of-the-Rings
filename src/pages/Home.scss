@@ -1,5 +1,10 @@
 .home-parent-page {
   padding-left: 2rem;
+  .pagination-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .heading-wrapper {
     padding: 2rem;
     p {
@@ -30,5 +35,60 @@
     .author {
       margin-left: auto;
     }
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    list-style-type: none;
+    gap: 2rem;
+    cursor: pointer;
+  }
+  @media (min-width: 375px) {
+    .pagination {
+      font-size: smaller;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .pagination {
+      font-size: larger;
+      color: black;
+    }
+  }
+
+  .page-item.active .page-link {
+    background-color: goldenrod;
+    border-color: goldenrod;
+    border-radius: 80%;
+    padding: 0.5rem;
+    color: black;
+  }
+
+  .page-link:focus,
+  .page-link:hover {
+    color: goldenrod;
+    text-decoration: none;
+  }
+
+  .disabled-page {
+    color: #808e9b;
+  }
+
+  .active {
+    border: solid 1px #808e9b;
+    border-radius: 40px;
+    color: #808e9b;
+  }
+
+  .next {
+    border-left: solid 1px #808e9b;
+    font-size: 4px;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    width: 150px;
   }
 }

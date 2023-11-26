@@ -4,7 +4,7 @@ import "./SearchBar.scss";
 import axios from "../../src/axiosConfig";
 import SearchButton from "./SearchButton";
 
-const SearchBar = ({ setCharacters }) => {
+const SearchBar = ({ setCharacters, setTotalPage }) => {
   const [input, setInput] = useState();
   const handleClick = async () => {
     if (input) {
@@ -12,6 +12,7 @@ const SearchBar = ({ setCharacters }) => {
         .get(`character?name=/${input}/i&limit=20`)
         .then((response) => {
           setCharacters(response?.data);
+          setTotalPage(response?.data?.pages);
         })
         .catch((error) => {
           console.error("API error:", error);
