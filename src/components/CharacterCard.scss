@@ -1,0 +1,35 @@
+.card-parent .card {
+  background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+}
+
+.card-parent .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 10rem;
+  width: 15rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.card-parent .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.card-parent .card p.second-text {
+  font-size: 0.7em;
+}
+
+.card-parent .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.card-parent:hover > .card:not(:hover) {
+  filter: blur(10px);
+  transform: scale(0.9, 0.9);
+}
