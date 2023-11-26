@@ -6,31 +6,32 @@ import "./Filter.scss";
 const Filter = ({ setCharacters, limit, input, currentPage, setTotalPage }) => {
   const [filters, setFilters] = useState({
     sort: "asc",
-    gender: "male",
-    race: "hobbit",
+    gender: "",
+    race: "",
   });
   const sort = [
     { label: "Ascending", value: "asc" },
     { label: "Descending", value: "desc" },
   ];
   const race = [
-    { label: "Hobbit", value: "hobbit" },
-    { label: "Human", value: "human" },
-    { label: "Orc", value: "orc" },
-    { label: "Goblin", value: "goblin" },
+    { label: "Any", value: "" },
+    { label: "Hobbit", value: "Hobbit" },
+    { label: "Human", value: "Human" },
+    { label: "Orc", value: "Orc" },
   ];
 
   const gender = [
-    { label: "Male", value: "male" },
-    { label: "Female", value: "female" },
+    { label: "Any", value: "" },
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
   ];
   const handleChange = (value, key) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
   const handleClick = async () => {
     const url = input
-      ? `character?sort=character:${filters.sort}&race=/${filters.race}/i&gender=/${filters.gender}/i&name=/${input}/i&page=${currentPage}&limit=${limit}`
-      : `character?sort=character:${filters.sort}&race=/${filters.race}/i&gender=/${filters.gender}/i&page=${currentPage}&limit=${limit}`;
+      ? `character?sort=character:${filters.sort}&race=${filters.race}&gender=${filters.gender}&name=/${input}/i&page=${currentPage}&limit=${limit}`
+      : `character?sort=character:${filters.sort}&race=${filters.race}&gender=${filters.gender}&page=${currentPage}&limit=${limit}`;
 
     await axios
       .get(url)
