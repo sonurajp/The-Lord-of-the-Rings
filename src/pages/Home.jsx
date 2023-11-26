@@ -1,16 +1,24 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "../../src/axiosConfig";
 import SearchBar from "../components/SearchBar";
 import "./Home.scss";
 import CharacterCard from "../components/CharacterCard";
 import ReactPaginate from "react-paginate";
+import PageLimit from "../components/PageLimit";
+import Filter from "../components/Filter";
+
 const Home = () => {
   const [characters, setCharacters] = useState();
   const [totalPage, setTotalPage] = useState(0);
+  const [limit, setLimit] = useState(20);
+  const [input, setInput] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+
   const pageClick = async (page) => {
     let pageAdd = page.selected + 1;
+    setCurrentPage(pageAdd);
     await axios
-      .get(`character?page=${pageAdd}&limit=20`)
+      .get(`character?page=${pageAdd}&limit=${limit}`)
       .then((response) => {
         setCharacters(response?.data);
         setTotalPage(response?.data?.pages);
@@ -19,9 +27,9 @@ const Home = () => {
         console.error("API error:", error);
       });
   };
-  const getCharacters = async () => {
+  const getCharacters = useCallback(async () => {
     await axios
-      .get("character?page=1&limit=20")
+      .get(`character?sort=character:asc&page=1&limit=${limit}`)
       .then((response) => {
         setCharacters(response?.data);
         setTotalPage(response?.data?.pages);
@@ -29,17 +37,31 @@ const Home = () => {
       .catch((error) => {
         console.error("API error:", error);
       });
-  };
+  }, [limit]);
   useEffect(() => {
     getCharacters();
-  }, []);
+  }, [limit, getCharacters]);
 
   return (
     <div className="home-parent-page">
       <div className="heading-wrapper">
         <p>Characters</p>
       </div>
-      <SearchBar setCharacters={setCharacters} setTotalPage={setTotalPage} />
+      <div className="search-filter-wrapper">
+        <SearchBar
+          input={input}
+          setInput={setInput}
+          setCharacters={setCharacters}
+          setTotalPage={setTotalPage}
+        />
+        <Filter
+          input={input}
+          setCharacters={setCharacters}
+          limit={limit}
+          currentPage={currentPage}
+          setTotalPage={setTotalPage}
+        />
+      </div>
       {characters?.docs?.length > 0 ? (
         <div className="card-parent ">
           {characters?.docs?.map((info) => (
@@ -57,27 +79,32 @@ const Home = () => {
           </div>
         </div>
       )}
-      {characters?.docs?.length > 0 && (
-        <ReactPaginate
-          previousLabel={"<"}
-          nextLabel={">"}
-          breakLabel={"..."}
-          pageCount={totalPage}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={pageClick}
-          containerClassName={"pagination"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          previousClassName={"page-item"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item"}
-          nextLinkClassName={"page-link"}
-          breakClassName={"page-item"}
-          breakLinkClassName={"page-link"}
-          activeClassName={"active"}
-        />
-      )}
+      <div className="pagination-wrapper">
+        {characters?.docs?.length > 0 && (
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            breakLabel={"..."}
+            pageCount={totalPage}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            onPageChange={pageClick}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+            breakClassName={"page-item"}
+            breakLinkClassName={"page-link"}
+            activeClassName={"active"}
+          />
+        )}
+        <div className="limit-wrapper">
+          <PageLimit setLimit={setLimit} />
+        </div>
+      </div>
     </div>
   );
 };

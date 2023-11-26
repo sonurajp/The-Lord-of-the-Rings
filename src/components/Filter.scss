@@ -1,0 +1,13 @@
+.filter-wrapper {
+  display: flex;
+  height: 2rem;
+  gap: 1rem;
+  .drop-down {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .filter-button {
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+}

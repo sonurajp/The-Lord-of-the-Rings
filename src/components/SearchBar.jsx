@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import "./SearchBar.scss";
 import axios from "../../src/axiosConfig";
 import SearchButton from "./SearchButton";
 
-const SearchBar = ({ setCharacters, setTotalPage }) => {
-  const [input, setInput] = useState();
+const SearchBar = ({ setCharacters, setTotalPage, input, setInput }) => {
   const handleClick = async () => {
     if (input) {
       await axios
