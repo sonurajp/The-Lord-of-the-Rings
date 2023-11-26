@@ -19,6 +19,7 @@ const Filter = ({ setCharacters, limit, input, currentPage, setTotalPage }) => {
     { label: "Orc", value: "orc" },
     { label: "Goblin", value: "goblin" },
   ];
+
   const gender = [
     { label: "Male", value: "male" },
     { label: "Female", value: "female" },
