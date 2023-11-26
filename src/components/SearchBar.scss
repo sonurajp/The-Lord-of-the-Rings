@@ -1,21 +1,28 @@
-.input-wrapper {
-  background-color: beige;
-  width: fit-content;
-  border-radius: 10px;
-  height: 2.5rem;
-  padding: 0 15px;
-  box-shadow: 0 0 8 #ddd;
+.search-parent {
   display: flex;
   align-items: center;
-}
-input {
-  background-color: transparent;
-  border: none;
-  height: 100%;
-  font-size: 1.25rem;
-  width: fit-content;
-  margin-left: 5px;
-}
-input:focus {
-  outline: none;
+  gap: 2rem;
+  font-family: "MyFont", sans-serif;
+  margin-top: 2rem;
+  .input-wrapper {
+    background-color: beige;
+    width: fit-content;
+    border-radius: 10px;
+    height: 2.5rem;
+    padding: 0 15px;
+    box-shadow: 0 0 8 #ddd;
+    display: flex;
+    align-items: center;
+  }
+  input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1.25rem;
+    width: fit-content;
+    margin-left: 5px;
+  }
+  input:focus {
+    outline: none;
+  }
 }
