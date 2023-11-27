@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Header from "./pages/Header";
+import CharacterDetailsPage from "./pages/CharacterDetailsPage";
 const App = () => {
   return (
     <main className="bg-slate-300/20">
@@ -14,9 +15,10 @@ const App = () => {
             element={
               <>
                 <Routes>
-                  {/* <Route path="/about" element={<About />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/contact" element={<Contact />} /> */}
+                  <Route
+                    path="/character/:id"
+                    element={<CharacterDetailsPage />}
+                  />
                 </Routes>
                 {/* <Footer /> */}
               </>
