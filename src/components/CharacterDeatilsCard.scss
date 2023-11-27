@@ -1,0 +1,26 @@
+.card {
+  font-family: "MyFont", sans-serif;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
+  background: #fffef0;
+  filter: url(#wavy2);
+}
+.header {
+  display: flex;
+  justify-content: center;
+}
+.card p {
+  color: black;
+  font-size: 3rem;
+  align-items: center;
+  filter: url(#00a4d6);
+}
+
+.filter {
+  display: none;
+  position: absolute;
+}
