@@ -30,8 +30,8 @@ const Filter = ({ setCharacters, limit, input, currentPage, setTotalPage }) => {
   };
   const handleClick = async () => {
     const url = input
-      ? `character?sort=character:${filters.sort}&race=${filters.race}&gender=${filters.gender}&name=/${input}/i&page=${currentPage}&limit=${limit}`
-      : `character?sort=character:${filters.sort}&race=${filters.race}&gender=${filters.gender}&page=${currentPage}&limit=${limit}`;
+      ? `character?sort=name:${filters.sort}&race=${filters.race}&gender=${filters.gender}&name=/${input}/i&page=${currentPage}&limit=${limit}`
+      : `character?sort=name:${filters.sort}&race=${filters.race}&gender=${filters.gender}&page=${currentPage}&limit=${limit}`;
 
     await axios
       .get(url)
