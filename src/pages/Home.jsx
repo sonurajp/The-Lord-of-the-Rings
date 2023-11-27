@@ -13,12 +13,19 @@ const Home = () => {
   const [limit, setLimit] = useState(20);
   const [input, setInput] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [filters, setFilters] = useState({
+    sort: "asc",
+    gender: "",
+    race: "",
+  });
   const pageClick = async (page) => {
     let pageAdd = page.selected + 1;
     setCurrentPage(pageAdd);
     await axios
-      .get(`character?page=${pageAdd}&limit=${limit}`)
+
+      .get(
+        `character?sort=name:${filters.sort}&race=${filters.race}&gender=${filters.gender}&page=${pageAdd}&limit=${limit}`
+      )
       .then((response) => {
         setCharacters(response?.data);
         setTotalPage(response?.data?.pages);
@@ -29,7 +36,9 @@ const Home = () => {
   };
   const getCharacters = useCallback(async () => {
     await axios
-      .get(`character?sort=character:asc&page=1&limit=${limit}`)
+      .get(
+        `character?sort=name:${filters.sort}&race=${filters.race}&gender=${filters.gender}&page=${currentPage}&limit=${limit}`
+      )
       .then((response) => {
         setCharacters(response?.data);
         setTotalPage(response?.data?.pages);
@@ -37,7 +46,7 @@ const Home = () => {
       .catch((error) => {
         console.error("API error:", error);
       });
-  }, [limit]);
+  }, [limit, currentPage, filters]);
   useEffect(() => {
     getCharacters();
   }, [limit, getCharacters]);
@@ -53,6 +62,9 @@ const Home = () => {
           setInput={setInput}
           setCharacters={setCharacters}
           setTotalPage={setTotalPage}
+          filters={filters}
+          limit={limit}
+          currentPage={currentPage}
         />
         <Filter
           input={input}
@@ -60,6 +72,8 @@ const Home = () => {
           limit={limit}
           currentPage={currentPage}
           setTotalPage={setTotalPage}
+          filters={filters}
+          setFilters={setFilters}
         />
       </div>
       {characters?.docs?.length > 0 ? (

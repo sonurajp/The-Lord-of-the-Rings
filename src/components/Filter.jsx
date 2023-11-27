@@ -1,30 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import axios from "../../src/axiosConfig";
 import "./Filter.scss";
+import { gender, race, sort } from "../assets/Utils/constant";
 
-const Filter = ({ setCharacters, limit, input, currentPage, setTotalPage }) => {
-  const [filters, setFilters] = useState({
-    sort: "asc",
-    gender: "",
-    race: "",
-  });
-  const sort = [
-    { label: "Ascending", value: "asc" },
-    { label: "Descending", value: "desc" },
-  ];
-  const race = [
-    { label: "Any", value: "" },
-    { label: "Hobbit", value: "Hobbit" },
-    { label: "Human", value: "Human" },
-    { label: "Orc", value: "Orc" },
-  ];
-
-  const gender = [
-    { label: "Any", value: "" },
-    { label: "Male", value: "Male" },
-    { label: "Female", value: "Female" },
-  ];
+const Filter = ({
+  setCharacters,
+  limit,
+  input,
+  currentPage,
+  setTotalPage,
+  filters,
+  setFilters,
+}) => {
   const handleChange = (value, key) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };

@@ -1,23 +1,23 @@
 .card {
   font-family: "MyFont", sans-serif;
-  width: fit-content;
+  width: 500px;
   height: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 1em;
   box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
   background: #fffef0;
-  filter: url(#wavy2);
 }
 .header {
   display: flex;
   justify-content: center;
+  filter: none;
 }
 .card p {
   color: black;
-  font-size: 3rem;
+  font-size: 1rem;
   align-items: center;
-  filter: url(#00a4d6);
+  filter: none; /* Remove the filter for paragraphs that don't have the 'filter' class */
 }
 
 .filter {

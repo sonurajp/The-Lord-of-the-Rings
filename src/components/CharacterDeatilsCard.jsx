@@ -6,28 +6,28 @@ const CharacterDeatilsCard = ({ characterDetails }) => {
       <div className="card">
         <p className="header">{characterDetails?.name}</p>
         <p className="second-text">
-          Gender:{characterDetails?.gender ? characterDetails?.gender : "N/A"}
+          Gender: {characterDetails?.gender ? characterDetails?.gender : "N/A"}
         </p>
         <p className="second-text">
-          Birth:{characterDetails?.birth ? characterDetails?.birth : "N/A"}
+          Birth: {characterDetails?.birth ? characterDetails?.birth : "N/A"}
         </p>
         <p className="second-text">
-          Death:{characterDetails?.death ? characterDetails?.death : "N/A"}
+          Death: {characterDetails?.death ? characterDetails?.death : "N/A"}
         </p>
         <p className="second-text">
-          Hair:{characterDetails?.hair ? characterDetails?.hair : "N/A"}
+          Hair: {characterDetails?.hair ? characterDetails?.hair : "N/A"}
         </p>
         <p className="second-text">
-          Height:{characterDetails?.height ? characterDetails?.height : "N/A"}
+          Height: {characterDetails?.height ? characterDetails?.height : "N/A"}
         </p>
         <p className="second-text">
-          Race:{characterDetails?.race ? characterDetails?.race : "N/A"}
+          Race: {characterDetails?.race ? characterDetails?.race : "N/A"}
         </p>
         <p className="second-text">
-          Realm:{characterDetails?.realm ? characterDetails?.realm : "N/A"}
+          Realm: {characterDetails?.realm ? characterDetails?.realm : "N/A"}
         </p>
         <p className="second-text">
-          Spouse:{characterDetails?.spouse ? characterDetails?.spouse : "N/A"}
+          Spouse: {characterDetails?.spouse ? characterDetails?.spouse : "N/A"}
         </p>
         <p className="second-text">
           Wiki:

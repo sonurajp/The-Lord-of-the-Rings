@@ -1,9 +1,6 @@
+import { limit } from "../assets/Utils/constant";
+
 const PageLimit = ({ setLimit }) => {
-  const limit = [
-    { label: 10, value: 10 },
-    { label: 20, value: 20 },
-    { label: 50, value: 50 },
-  ];
   return (
     <>
       <label className="dropdown">Limit:</label>

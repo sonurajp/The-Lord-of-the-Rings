@@ -3,28 +3,29 @@ import "./SearchBar.scss";
 import axios from "../../src/axiosConfig";
 import SearchButton from "./SearchButton";
 
-const SearchBar = ({ setCharacters, setTotalPage, input, setInput }) => {
+const SearchBar = ({
+  setCharacters,
+  setTotalPage,
+  input,
+  setInput,
+  limit,
+  filters,
+  currentPage,
+}) => {
   const handleClick = async () => {
-    if (input) {
-      await axios
-        .get(`character?name=/${input}/i&limit=20`)
-        .then((response) => {
-          setCharacters(response?.data);
-          setTotalPage(response?.data?.pages);
-        })
-        .catch((error) => {
-          console.error("API error:", error);
-        });
-    } else {
-      await axios
-        .get(`character?page=1&limit=8`)
-        .then((response) => {
-          setCharacters(response?.data);
-        })
-        .catch((error) => {
-          console.error("API error:", error);
-        });
-    }
+    const url = input
+      ? `character?name=/${input}/i&limit=20`
+      : `character?sort=name:${filters.sort}&race=${filters.race}&gender=${filters.gender}&limit=${limit}`;
+
+    await axios
+      .get(url)
+      .then((response) => {
+        setCharacters(response?.data);
+        setTotalPage(response?.data?.pages);
+      })
+      .catch((error) => {
+        console.error("API error:", error);
+      });
   };
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
