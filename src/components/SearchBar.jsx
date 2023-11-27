@@ -26,13 +26,18 @@ const SearchBar = ({ setCharacters, setTotalPage, input, setInput }) => {
         });
     }
   };
-
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
+  };
   return (
     <div className="search-parent">
       <div className="input-wrapper">
         <input
           placeholder="by name"
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <SearchButton handleClick={handleClick} />
